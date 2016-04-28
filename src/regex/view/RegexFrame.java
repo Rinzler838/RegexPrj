@@ -19,7 +19,7 @@ public class RegexFrame extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);
-		this.setSize(700, 500);
+		this.setSize(450, 300);
 		this.setTitle("REGEX: Regular Expressions");
 		this.setResizable(false);
 		this.setVisible(true);

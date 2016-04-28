@@ -26,6 +26,7 @@ public class RegexPanel extends JPanel
 		this.baseController = baseController;
 		baseLayout = new SpringLayout();
 		checkButton = new JButton("Check");
+		
 		firstField = new JTextField(25);
 		lastField = new JTextField(25);
 		phoneField = new JTextField(25);
@@ -34,6 +35,7 @@ public class RegexPanel extends JPanel
 		lastLabel = new JLabel("");
 		phoneLabel = new JLabel("");
 		emailLabel = new JLabel("");
+		
 		
 		setupPanel();
 		setupLayout();
@@ -56,7 +58,32 @@ public class RegexPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.SOUTH, checkButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, checkButton, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, firstField, 0, SpringLayout.WEST, lastField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstField, -28, SpringLayout.NORTH, lastField);
+		baseLayout.putConstraint(SpringLayout.WEST, lastField, 0, SpringLayout.WEST, phoneField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, lastField, -23, SpringLayout.NORTH, phoneField);
+		baseLayout.putConstraint(SpringLayout.WEST, phoneField, 0, SpringLayout.WEST, emailField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, phoneField, -27, SpringLayout.NORTH, emailField);
+		baseLayout.putConstraint(SpringLayout.WEST, emailField, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, emailField, -31, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstLabel, 0, SpringLayout.SOUTH, firstField);
+		baseLayout.putConstraint(SpringLayout.WEST, firstLabel, 0, SpringLayout.WEST, firstField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstLabel, 0, SpringLayout.NORTH, lastField);
+		baseLayout.putConstraint(SpringLayout.EAST, firstLabel, 0, SpringLayout.EAST, firstField);
+		baseLayout.putConstraint(SpringLayout.NORTH, lastLabel, 0, SpringLayout.SOUTH, lastField);
+		baseLayout.putConstraint(SpringLayout.WEST, lastLabel, 0, SpringLayout.WEST, lastField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, lastLabel, 0, SpringLayout.NORTH, phoneField);
+		baseLayout.putConstraint(SpringLayout.EAST, lastLabel, 0, SpringLayout.EAST, lastField);
+		baseLayout.putConstraint(SpringLayout.NORTH, phoneLabel, 0, SpringLayout.SOUTH, phoneField);
+		baseLayout.putConstraint(SpringLayout.WEST, phoneLabel, 0, SpringLayout.WEST, phoneField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, phoneLabel, 0, SpringLayout.NORTH, emailField);
+		baseLayout.putConstraint(SpringLayout.EAST, phoneLabel, 0, SpringLayout.EAST, phoneField);
+		baseLayout.putConstraint(SpringLayout.NORTH, emailLabel, 0, SpringLayout.SOUTH, emailField);
+		baseLayout.putConstraint(SpringLayout.WEST, emailLabel, 0, SpringLayout.WEST, emailField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, emailLabel, 0, SpringLayout.SOUTH, checkButton);
+		baseLayout.putConstraint(SpringLayout.EAST, emailLabel, 0, SpringLayout.EAST, emailField);
 	}
 	
 	private void setupListeners()
@@ -66,13 +93,13 @@ public class RegexPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String firstName = firstField.getText();
-				firstLabel.setText();
+				//firstLabel.setText("");
 				String lastName = lastField.getText();
-				lastLabel.setText();
+				//lastLabel.setText("");
 				String phoneNum = phoneField.getText();
-				phoneLabel.setText();
-				String email = emailField.getText();.
-				emailLabel.setText();
+				//phoneLabel.setText("");
+				String email = emailField.getText();
+				//emailLabel.setText("");
 			}
 		});
 	}
