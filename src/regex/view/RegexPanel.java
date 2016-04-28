@@ -1,5 +1,6 @@
 package regex.view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,7 +26,7 @@ public class RegexPanel extends JPanel
 	{
 		this.baseController = baseController;
 		baseLayout = new SpringLayout();
-		checkButton = new JButton("Check");
+		checkButton = new JButton("Verify");
 		
 		firstField = new JTextField(25);
 		lastField = new JTextField(25);
@@ -45,6 +46,7 @@ public class RegexPanel extends JPanel
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
+		this.setBackground(Color.BLACK);
 		this.add(checkButton);
 		this.add(firstField);
 		this.add(lastField);
@@ -93,13 +95,20 @@ public class RegexPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String firstName = firstField.getText();
-				//firstLabel.setText("");
+				String firstStatus = baseController.processFirstName(firstName);
+				firstLabel.setText(firstStatus);
+				
 				String lastName = lastField.getText();
-				//lastLabel.setText("");
+				String lastStatus = baseController.processLastName(lastName);
+				lastLabel.setText(lastStatus);
+				
 				String phoneNum = phoneField.getText();
-				//phoneLabel.setText("");
+				String phoneStatus = baseController.processPhoneNumber(phoneNum);
+				phoneLabel.setText(phoneStatus);
+				
 				String email = emailField.getText();
-				//emailLabel.setText("");
+				String emailStatus = baseController.processEmail(email);
+				emailLabel.setText(emailStatus);
 			}
 		});
 	}

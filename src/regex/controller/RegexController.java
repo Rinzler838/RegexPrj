@@ -28,25 +28,33 @@ public class RegexController
 	
 	public String processFirstName(String firstName)
 	{
-		return firstName;
+		String firstStatus = "";
+		firstStatus = regex.firstNameChecker(firstName);
+		return firstStatus;
 		
 	}
 	
 	public String processLastName(String lastName)
 	{
-		return lastName;
+		String lastStatus = "";
+		lastStatus = regex.lastNameChecker(lastName);
+		return lastStatus;
 		
 	}
 	
-	public String processPhoneNumber(String PhoneNum)
+	public String processPhoneNumber(String phoneNum)
 	{
-		return PhoneNum;
+		String phoneStatus = "";
+		phoneStatus = regex.phoneNumChecker(phoneNum);
+		return phoneStatus;
 		
 	}
 	
 	public String processEmail(String email)
 	{
-		return email;
+		String emailStatus = "";
+		emailStatus = regex.emailChecker(emailStatus);
+		return emailStatus;
 		
 	}
 }

@@ -23,6 +23,6 @@ public class RegexView
 	
 	public void showMessage(String formativeDisplay)
 	{
-		JOptionPane.showMessageDialog(null, formativeDisplay, windowTitle, JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, formativeDisplay, windowTitle, JOptionPane.INFORMATION_MESSAGE, regexIcon);
 	}
 }
