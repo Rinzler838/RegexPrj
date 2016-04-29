@@ -96,18 +96,22 @@ public class RegexPanel extends JPanel
 			{
 				String firstName = firstField.getText();
 				String firstStatus = baseController.processFirstName(firstName);
+				firstLabel.setForeground(Color.WHITE);
 				firstLabel.setText(firstStatus);
 				
 				String lastName = lastField.getText();
 				String lastStatus = baseController.processLastName(lastName);
+				firstLabel.setForeground(Color.WHITE);
 				lastLabel.setText(lastStatus);
 				
 				String phoneNum = phoneField.getText();
 				String phoneStatus = baseController.processPhoneNumber(phoneNum);
+				firstLabel.setForeground(Color.WHITE);
 				phoneLabel.setText(phoneStatus);
 				
 				String email = emailField.getText();
 				String emailStatus = baseController.processEmail(email);
+				firstLabel.setForeground(Color.WHITE);
 				emailLabel.setText(emailStatus);
 			}
 		});

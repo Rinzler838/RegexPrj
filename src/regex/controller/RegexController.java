@@ -23,7 +23,9 @@ public class RegexController
 	
 	public void start()
 	{
-		regexDisplay.showMessage("Here's the situation Snake: security's been down for sometime now. Go ahead and verify your info in the next window.");
+		regexDisplay.showMessage("Here's the situation Snake: Security's been breached and we've lost integrity.");
+		regexDisplay.showMessage("Go ahead and re-verify your info in the next window.");
+		regexDisplay.showResponse("Roger that Colonel");
 	}
 	
 	public String processFirstName(String firstName)
