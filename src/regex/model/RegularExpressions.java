@@ -1,6 +1,8 @@
 package regex.model;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegularExpressions
 {
@@ -8,6 +10,8 @@ public class RegularExpressions
 	private ArrayList<String> lastList;
 	private ArrayList <String> phoneList;
 	private ArrayList<String> providerList;
+	private Pattern emailPattern;
+	private Matcher emailMatcher;
 	
 	public RegularExpressions()
 	{
@@ -15,6 +19,7 @@ public class RegularExpressions
 		this.lastList = new ArrayList<String>();
 		this.phoneList = new ArrayList<String>();
 		this.providerList = new ArrayList<String>();
+		emailPattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 		
 		buildFirstList();
 		buildLastList();
@@ -154,11 +159,11 @@ public class RegularExpressions
 		
 		if (lastName.length() > 2 && lastName.length() < 40)
 		{
-			for (int currentSymbol = 0; currentSymbol < firstList.size(); currentSymbol++)
+			for (int currentSymbol = 0; currentSymbol < lastList.size(); currentSymbol++)
 			{
 				if (lastName.contains(lastList.get(currentSymbol)))
 				{
-					return lastCheck = "Status Code 400: Conatins invalid characters";
+					lastCheck = "Status Code 400: Conatins invalid characters";
 				}
 				else
 				{
@@ -175,23 +180,21 @@ public class RegularExpressions
 	
 	public String phoneNumChecker(String phoneNum)
 	{
-		String phoneCheck = null;
+		String phoneCheck = "";
 		
 		if (phoneNum.length() == 10)
-		{
-			phoneCheck = "Status Code 200: ";
-			
-			for (int letter = 0; letter < phoneNum.length(); letter++)
+		{	
+			for (int currentNum = 1; currentNum < phoneList.size(); currentNum++)
 			{
-				for (int currentNum = 0; currentNum < phoneList.size(); currentNum++)
+				for (int letter = 1; letter < phoneNum.length(); letter++)
 				{
 					if (phoneNum.substring(letter, letter + 1).equals(phoneList.get(currentNum).substring(0,1)))
 					{
-						phoneCheck += "Character" + letter + "is clear, ";
+						return phoneCheck += letter + ", ";
 					}
 					else
 					{
-						phoneCheck += "Status Code 400: Character" + letter + "is invalid";
+						phoneCheck += "X, ";
 					}
 				}
 			}
@@ -207,20 +210,27 @@ public class RegularExpressions
 	{
 		String emailCheck = null;
 		
-		if (email.contains("@"))
+		emailMatcher = emailPattern.matcher(email);
+		
+		if (emailMatcher.matches() == true)
 		{
-			for (int currentEmail = 0; currentEmail < providerList.size(); currentEmail++)
-			{
-				if (email.substring(email.indexOf("@") + 1, email.indexOf(".") + 3).equals(providerList.get(currentEmail)))
-				{
-					return emailCheck = "Status Code 200: Clear";
-				}
-			}
-		}
-		else
-		{
-			emailCheck = "Status Code 421: Does not contain @ symbol";
+			emailCheck = "Status Code 200: Clear";
 		}
 		return emailCheck;
 	}
 }
+
+//if (email.contains("@"))
+//{
+//	for (int currentEmail = 0; currentEmail < providerList.size(); currentEmail++)
+//	{
+//		if (email.substring(email.indexOf("@") + 1, email.length()).equals(providerList.get(currentEmail)))
+//		{
+//			return emailCheck = "Status Code 200: Clear";
+//		}
+//	}
+//}
+//else
+//{
+//	emailCheck = "Status Code 421: Does not contain @ symbol";
+//}

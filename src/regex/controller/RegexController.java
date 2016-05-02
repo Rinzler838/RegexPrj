@@ -23,14 +23,14 @@ public class RegexController
 	
 	public void start()
 	{
-		regexDisplay.showMessage("Here's the situation Snake: Security's been breached and we've lost integrity.");
+		regexDisplay.showMessage("Here's the situation Snake: Our database has been hacked and we've lost technical security integrity.");
 		regexDisplay.showMessage("Go ahead and re-verify your info in the next window.");
 		regexDisplay.showResponse("Roger that Colonel");
 	}
 	
 	public String processFirstName(String firstName)
 	{
-		String firstStatus = "";
+		String firstStatus = "null";
 		firstStatus = regex.firstNameChecker(firstName);
 		return firstStatus;
 		
@@ -38,7 +38,7 @@ public class RegexController
 	
 	public String processLastName(String lastName)
 	{
-		String lastStatus = "";
+		String lastStatus = "null";
 		lastStatus = regex.lastNameChecker(lastName);
 		return lastStatus;
 		
@@ -46,7 +46,7 @@ public class RegexController
 	
 	public String processPhoneNumber(String phoneNum)
 	{
-		String phoneStatus = "";
+		String phoneStatus = "null";
 		phoneStatus = regex.phoneNumChecker(phoneNum);
 		return phoneStatus;
 		
@@ -54,7 +54,7 @@ public class RegexController
 	
 	public String processEmail(String email)
 	{
-		String emailStatus = "";
+		String emailStatus = "null";
 		emailStatus = regex.emailChecker(emailStatus);
 		return emailStatus;
 		

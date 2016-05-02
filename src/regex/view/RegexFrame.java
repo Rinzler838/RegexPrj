@@ -20,7 +20,7 @@ public class RegexFrame extends JFrame
 	{
 		this.setContentPane(basePanel);
 		this.setSize(450, 300);
-		this.setTitle("REGEX: Regular Expressions");
+		this.setTitle("CODEC: Port 165.12 - Connection Secure");
 		this.setResizable(false);
 		this.setVisible(true);
 	}
