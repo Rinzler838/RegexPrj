@@ -1,6 +1,7 @@
 package regex.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,8 +11,13 @@ public class RegularExpressions
 	private ArrayList<String> lastList;
 	private ArrayList <String> phoneList;
 	private ArrayList<String> providerList;
-	private Pattern emailPattern;
 	private Matcher emailMatcher;
+	private Pattern emailPattern;
+	private Matcher phoneMatcher;
+	private Pattern phonePattern;
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private static final String PHONE_PATTERN = "^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
+	
 	
 	public RegularExpressions()
 	{
@@ -19,12 +25,11 @@ public class RegularExpressions
 		this.lastList = new ArrayList<String>();
 		this.phoneList = new ArrayList<String>();
 		this.providerList = new ArrayList<String>();
-		emailPattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+		this.emailPattern = Pattern.compile(EMAIL_PATTERN);
+		this.phonePattern = Pattern.compile(PHONE_PATTERN);
 		
 		buildFirstList();
 		buildLastList();
-		buildPhoneList();
-		buildProviderList();
 	}
 	
 	private void buildFirstList()
@@ -61,6 +66,7 @@ public class RegularExpressions
 		this.firstList.add("'");
 		this.firstList.add(":");
 		this.firstList.add("\"");
+		this.firstList.add(" ");
 		
 	}
 	
@@ -95,37 +101,7 @@ public class RegularExpressions
 		this.lastList.add("'");
 		this.lastList.add(":");
 		this.lastList.add("\"");
-	}
-	
-	private void buildPhoneList()
-	{
-		this.phoneList.add("0");
-		this.phoneList.add("1");
-		this.phoneList.add("2");
-		this.phoneList.add("3");
-		this.phoneList.add("4");
-		this.phoneList.add("5");
-		this.phoneList.add("6");
-		this.phoneList.add("7");
-		this.phoneList.add("8");
-		this.phoneList.add("9");
-	}
-	
-	private void buildProviderList()
-	{
-		this.providerList.add("gmail.com");
-		this.providerList.add("yahoo.com");
-		this.providerList.add("aol.com");
-		this.providerList.add("msn.com");
-		this.providerList.add("facebook.com");
-		this.providerList.add("mail.com");
-		this.providerList.add("comcast.net");
-		this.providerList.add("hotmail.com");
-		this.providerList.add("verizon.net");
-		this.providerList.add("gmx.com");
-		this.providerList.add("live.com");
-		this.providerList.add("att.net");
-		this.providerList.add("hushmail.com");
+		this.lastList.add(" ");
 	}
 	
 	public String firstNameChecker(String firstName)
@@ -182,21 +158,17 @@ public class RegularExpressions
 	{
 		String phoneCheck = "";
 		
+		phoneMatcher = phonePattern.matcher(phoneNum);
+		
 		if (phoneNum.length() == 10)
 		{	
-			for (int currentNum = 1; currentNum < phoneList.size(); currentNum++)
+			if (phoneMatcher.matches() == true)
 			{
-				for (int letter = 1; letter < phoneNum.length(); letter++)
-				{
-					if (phoneNum.substring(letter, letter + 1).equals(phoneList.get(currentNum).substring(0,1)))
-					{
-						return phoneCheck += letter + ", ";
-					}
-					else
-					{
-						phoneCheck += "X, ";
-					}
-				}
+				phoneCheck = "Status Code 200: Clear";
+			}
+			else
+			{
+				phoneCheck = "Status Code 400: Invalid Entry";
 			}
 		}
 		else
@@ -208,29 +180,17 @@ public class RegularExpressions
 	
 	public String emailChecker(String email)
 	{
-		String emailCheck = null;
+		String emailCheck = "";
 		
 		emailMatcher = emailPattern.matcher(email);
 		
 		if (emailMatcher.matches() == true)
 		{
-			emailCheck = "Status Code 200: Clear";
+			return emailCheck = "Status Code 200: Clear";
 		}
-		return emailCheck;
+		else
+		{
+			return emailCheck = "Status Code 400: Invalid Entry";
+		}
 	}
 }
-
-//if (email.contains("@"))
-//{
-//	for (int currentEmail = 0; currentEmail < providerList.size(); currentEmail++)
-//	{
-//		if (email.substring(email.indexOf("@") + 1, email.length()).equals(providerList.get(currentEmail)))
-//		{
-//			return emailCheck = "Status Code 200: Clear";
-//		}
-//	}
-//}
-//else
-//{
-//	emailCheck = "Status Code 421: Does not contain @ symbol";
-//}

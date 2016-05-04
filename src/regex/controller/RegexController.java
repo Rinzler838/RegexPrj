@@ -54,8 +54,8 @@ public class RegexController
 	
 	public String processEmail(String email)
 	{
-		String emailStatus = "null";
-		emailStatus = regex.emailChecker(emailStatus);
+		String emailStatus = "Controller";
+		regex.emailChecker(emailStatus);
 		return emailStatus;
 		
 	}
