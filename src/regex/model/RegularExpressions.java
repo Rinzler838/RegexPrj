@@ -139,7 +139,7 @@ public class RegularExpressions
 			{
 				if (lastName.contains(lastList.get(currentSymbol)))
 				{
-					lastCheck = "Status Code 400: Conatins invalid characters";
+					lastCheck = "Status Code 400: Contains invalid characters";
 				}
 				else
 				{
@@ -186,11 +186,12 @@ public class RegularExpressions
 		
 		if (emailMatcher.matches() == true)
 		{
-			return emailCheck = "Status Code 200: Clear";
+			emailCheck = "Status Code 200: Clear";
 		}
 		else
 		{
-			return emailCheck = "Status Code 400: Invalid Entry";
+			emailCheck = "Status Code 400: Invalid Entry";
 		}
+		return emailCheck;
 	}
 }
