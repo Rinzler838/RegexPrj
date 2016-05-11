@@ -1,7 +1,6 @@
 package regex.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,8 +8,6 @@ public class RegularExpressions
 {
 	private ArrayList<String> firstList;
 	private ArrayList<String> lastList;
-	private ArrayList <String> phoneList;
-	private ArrayList<String> providerList;
 	private Matcher emailMatcher;
 	private Pattern emailPattern;
 	private Matcher phoneMatcher;
@@ -23,8 +20,6 @@ public class RegularExpressions
 	{
 		this.firstList = new ArrayList<String>();
 		this.lastList = new ArrayList<String>();
-		this.phoneList = new ArrayList<String>();
-		this.providerList = new ArrayList<String>();
 		this.emailPattern = Pattern.compile(EMAIL_PATTERN);
 		this.phonePattern = Pattern.compile(PHONE_PATTERN);
 		
